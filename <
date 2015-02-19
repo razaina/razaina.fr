@@ -1,0 +1,33 @@
+---
+layout: post
+title: "Android kernel module for accessing Cortex A9's cache memory"
+description: ""
+category: 
+tags: []
+---
+{% include JB/setup %}
+
+
+The aim of this module was to be able to:
+
+- enable the access to the Performance Monitor Unit (cf. <a
+  href="http://infocenter.arm.com/help/topic/com.arm.doc.ddi0388i/BEHEDIHI.html"
+  target="_blank">PMU</a>) control registers in user-mode
+- read the Cycle Counter register
+- trigger the cache flush operation from the external world (outside the kernel world)
+
+According to ARM's documentation: "The system control coprocessor, CP15, controls [...] cache
+configuration and management." (cf. <a
+href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0388f/CIHGCFGG.html"
+target="_blank"> About system control</a>)
+
+If we check the <a
+href="http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0388f/CIHGCFGG.html"
+target="_blank"> Registers summary</a> one can notice that we can access to the CP15 system control
+registers using the instructions "MCR" and "MRC". From the same page, one can notice that one of the
+main functionalities of the CP15 is to proveide "<a
+href="http://infocenter.arm.com/help/topic/com.arm.doc.ddi0388i/CIHGBJID.html">Performance Monitor
+Registers</a>".
+
+
+
